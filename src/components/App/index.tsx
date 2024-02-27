@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Header from '../Header';
 import EntityForm from '../EntityForm';
 import './App.css';
@@ -18,10 +19,16 @@ const App = () => {
     }))
   }
 
+  // const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+
+  // }
+
   return (
     <div className="App">
       <Header />
-      <EntityForm {...entity} handleChange={handleChange}/>
+      <Routes>
+        <Route path="/" element={<EntityForm {...entity} handleChange={handleChange}/>} />
+      </Routes>
     </div>
   );
 }
