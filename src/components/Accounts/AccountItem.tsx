@@ -43,21 +43,14 @@ const AccountItem = ({ account, amount, paymentId, handleChange, submitPayment }
         {accountName}
       </Col>
       <Col>
-        <Row>
-          <Col>
-            <Label for="amount">Amount (cents)</Label>
-          </Col>
-          <Col>
-            <Input
-              id="amount"
-              name="amount"
-              type="number"
-              placeholder="5000"
-              value={amount}
-              onChange={handleChange}
-              />
-          </Col>
-        </Row>
+        <Input
+          id="amount"
+          name="amount"
+          type="number"
+          placeholder="5000"
+          value={amount}
+          onChange={handleChange}
+          />
       </Col>
       <Col>
         <Button color="success" onClick={submitPayment}>Pay</Button>
