@@ -4,18 +4,14 @@ import { API_URL } from '../../config';
 import type { RequestOptions } from '../types';
 
 interface MethodElementProps {
-  first_name: string;
-  last_name: string;
-  phone: string;
   handleSubmit: (value: string) => void;
   handleSetEntityId: (newEntityId: string) => void;
 };
 
-const MethodElement = ({ first_name, last_name, phone, handleSubmit, handleSetEntityId }: MethodElementProps) => {
+const MethodElement = ({ handleSubmit, handleSetEntityId }: MethodElementProps) => {
   const [token, setToken] = useState('');
   
   useEffect(() => {
-    console.log('fired');
     const requestOpts: RequestOptions = {
       method: 'POST',
       headers: {
@@ -29,11 +25,7 @@ const MethodElement = ({ first_name, last_name, phone, handleSubmit, handleSetEn
           ...requestOpts,
           body: JSON.stringify({
             type: 'individual',
-            individual: {
-              first_name,
-              last_name,
-              phone
-            }
+            individual: {}
           })
         });
         const entity = await entityRes.json();
@@ -59,7 +51,7 @@ const MethodElement = ({ first_name, last_name, phone, handleSubmit, handleSetEn
     makeRequests();
 
     return () => {};
-  }, [first_name, last_name, phone, handleSetEntityId]);
+  }, [handleSetEntityId]);
 
   const method = useMethod({
     env: 'dev',

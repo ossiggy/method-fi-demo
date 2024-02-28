@@ -13,7 +13,6 @@ const Accounts = ({ entityId }: { entityId: string }) => {
       try {
         const accountRes = await fetch(`${API_URL}/account/list/${entityId}`);
         const accountsBody = await accountRes.json();
-        console.log(accountsBody);
         setAccounts(accountsBody);
       } catch (err: any) {
         console.error(err);
@@ -36,7 +35,11 @@ const Accounts = ({ entityId }: { entityId: string }) => {
   }
 
   return (
-    <Container>
+    <Container
+      style={{
+        marginTop: '0.5rem'
+      }}
+    >
       <ListGroup>
         <AccountHeaders />
         {accountList}

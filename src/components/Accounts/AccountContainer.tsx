@@ -12,8 +12,6 @@ export interface AccountContainerProps {
 const AccountContainer = ({ account }:AccountContainerProps) => {
   const [amount, setAmount] = useState(0);
   const [paymentId, setPaymentId] = useState('');
-
-  console.log(SOURCE_ACCOUNT);
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
