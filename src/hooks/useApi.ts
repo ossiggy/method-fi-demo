@@ -32,6 +32,8 @@ export const useApi: UseApi = (endpoint, method, payload) => {
     const makeRequest: () => void = async () => {
       try {
         const response = await fetch(`${API_URL}/${endpoint}`, requestOptions);
+        console.log(API_URL, endpoint, requestOptions);
+        console.log(response);
         const data = await response.json();
         setLoading(false);
         setData(data);

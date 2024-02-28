@@ -6,9 +6,10 @@ interface EntityFormProps {
   last_name: string;
   phone: string;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (value: string) => void;
 }
 
-const EntityForm = ({first_name, last_name, phone, handleChange}: EntityFormProps) => {
+const EntityForm = ({ first_name, last_name, phone, handleChange, handleSubmit }: EntityFormProps) => {
   return (
     <Container
     style={{
@@ -67,7 +68,7 @@ const EntityForm = ({first_name, last_name, phone, handleChange}: EntityFormProp
             </Input>
           </Col>
         </FormGroup>
-        <Button color="success">Submit</Button>
+        <Button color="success" type="submit" onClick={()=>handleSubmit('/element')}>Submit</Button>
       </Form>
     </Container>
   )
