@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Container, Button } from 'reactstrap';
 import { useMethod } from '../../hooks';
 import { API_URL } from '../../config';
 import type { RequestOptions } from '../types';
@@ -53,6 +54,12 @@ const MethodElement = ({ handleSubmit, handleSetEntityId }: MethodElementProps) 
     return () => {};
   }, [handleSetEntityId]);
 
+  const handleClick = () => {
+    if (token && token.length){
+      method?.open(token);
+    }
+  }
+
   const method = useMethod({
     env: 'dev',
     onEvent: (event) => {
@@ -60,6 +67,7 @@ const MethodElement = ({ handleSubmit, handleSetEntityId }: MethodElementProps) 
     },
     onSuccess: (payload) => {
       console.log('onSuccess:', payload);
+      handleSubmit('/accounts');
     },
     onError: (error) => {
       console.log('onError', error);
@@ -67,7 +75,6 @@ const MethodElement = ({ handleSubmit, handleSetEntityId }: MethodElementProps) 
     },
     onExit: (payload) => {
       console.log('onExit:', payload);
-      handleSubmit('/accounts');
     },
     onOpen : (payload) => {
       console.log('onOpen', payload);
@@ -78,7 +85,11 @@ const MethodElement = ({ handleSubmit, handleSetEntityId }: MethodElementProps) 
     method?.open(token);
   }
 
-  return <div id="method-el"></div>
+  return (
+    <Container id="method-el" style={{ marginTop: '0.5rem' }}>
+      <Button onClick={handleClick} color="success">Launch Element</Button>
+    </Container>
+  )
 }
 
 export default MethodElement;
